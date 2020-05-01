@@ -31,65 +31,39 @@ class Home extends React.Component {
         source={require('../Assets/layer_1.png')}
         style={styles.container}>
         <View
-          style={{
-            flexDirection: 'row',
-            marginTop: 20,
-            marginLeft: 10,
-            justifyContent: 'space-between',
-          }}>
+          style={styles.topBar}>
           <View
-            style={{
-              marginTop: 5,
-            }}>
+            style={styles.hamburg}>
             <Image source={require('../Assets/Hamburger_1.png')} />
           </View>
 
           <View
-            style={{
-              marginLeft: 7,
-            }}>
+            style={styles.applogo}>
             <Text style={styles.appName}>APP LOGO</Text>
           </View>
 
           <View
-            style={{
-              marginLeft: 80,
-              marginTop: 5,
-            }}>
+            style={styles.notification}>
             <Image source={require('../Assets/notification.png')} />
           </View>
 
           <View
-            style={{
-              marginRight: 20,
-              marginTop: 5,
-            }}>
+            style={styles.search}>
             <Image source={require('../Assets/search.png')} />
           </View>
         </View>
 
         <View
-          style={{
-            marginTop: 30,
-          }}>
+          style={styles.flatView}>
           <FlatList
             data={datas.results}
             horizontal
             renderItem={({item}) => {
               return (
                 <View
-                  style={{
-                    marginLeft: 10,
-                  }}>
+                  style={styles.backView}>
                   <Image
-                    style={{
-                      height: 250,
-                      width: 300,
-                      borderTopStartRadius: 10,
-                      borderBottomStartRadius: 10,
-                      borderTopRightRadius: 10,
-                      borderBottomRightRadius: 10,
-                    }}
+                    style={styles.backDrop}
                     source={{
                       uri:
                         'https://image.tmdb.org/t/p/w500' + item.backdrop_path,
@@ -103,28 +77,16 @@ class Home extends React.Component {
         </View>
 
         <View
-          style={{
-            marginTop: 30,
-          }}>
+          style={styles.movieTextView}>
           <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
+            style={styles.movieInnerView}>
             <Text
-              style={{
-                color: 'white',
-                marginLeft: 20,
-                marginBottom: 10,
-              }}>
+              style={styles.movieText}>
               MOVIES
             </Text>
 
             <Text
-              style={{
-                color: '#e4264e',
-                marginRight: 20,
-              }}>
+              style={styles.showall}>
               Show All
             </Text>
           </View>
@@ -135,66 +97,36 @@ class Home extends React.Component {
               return (
                 <View style={{}}>
                   <Image
-                    style={{
-                      height: 190,
-                      width: 150,
-                      borderTopStartRadius: 10,
-                      borderBottomStartRadius: 10,
-                      borderTopRightRadius: 10,
-                      borderBottomRightRadius: 10,
-                      marginLeft: 20,
-                    }}
+                    style={styles.poster}
                     source={{
                       uri: 'https://image.tmdb.org/t/p/w500' + item.poster_path,
                     }}
                   />
 
                   <View
-                    style={{
-                      backgroundColor: '#181f29',
-                      marginLeft: 20,
-                      padding: 10,
-                    }}>
+                    style={styles.reviewView}>
                     <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                      }}>
+                      style={styles.titletextView}>
                       <Text
-                        style={{
-                          color: 'white',
-                          textTransform: 'uppercase',
-                        }}>
+                        style={styles.titleText}>
                         {item.title}
                       </Text>
 
                       <Image
                         source={require('../Assets/rating.png')}
-                        style={{
-                          marginRight: 10,
-                        }}
+                        style={styles.ratingImg}
                       />
                     </View>
 
                     <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        marginTop: 10,
-                      }}>
+                      style={styles.mediaType}>
                       <Text
-                        style={{
-                          color: 'white',
-                          textTransform: 'uppercase',
-                        }}>
+                        style={styles.mediatext}>
                         {item.media_type}
                       </Text>
 
                       <Text
-                        style={{
-                          color: 'white',
-                          marginRight: 10,
-                        }}>
+                        style={styles.voteText}>
                         {item.vote_average}
                       </Text>
                     </View>
@@ -209,29 +141,17 @@ class Home extends React.Component {
 
         </View>
 
-        <View style={{
-            marginTop: 30,
-          }}>
+        <View style={styles.movieTextView}>
 
 <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
+            style={styles.movieInnerView}>
             <Text
-              style={{
-                color: 'white',
-                marginLeft: 20,
-                marginBottom: 10,
-              }}>
+              style={styles.movieText}>
               LIVE CHANNELS
             </Text>
 
             <Text
-              style={{
-                color: '#e4264e',
-                marginRight: 20,
-              }}>
+              style={styles.showall}>
               Show All
             </Text>
           </View>
@@ -251,6 +171,94 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
   },
+  topBar:{
+    flexDirection: 'row',
+    marginTop: 20,
+    marginLeft: 10,
+    justifyContent: 'space-between',
+  },
+  hamburg:{
+    marginTop: 5,
+  },
+  backDrop:{
+    height: 250,
+    width: 300,
+    borderTopStartRadius: 10,
+    borderBottomStartRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  movieText:{
+    color: 'white',
+    marginLeft: 20,
+    marginBottom: 10,
+  },
+  applogo:{
+    marginLeft: 7,
+  },
+  notification:{
+    marginLeft: 80,
+    marginTop: 5,
+  },
+  search:{
+    marginRight: 20,
+    marginTop: 5,
+  },
+  flatView:{
+    marginTop: 30,
+  },
+  backView:{
+    marginLeft: 10,
+  },
+  poster:{
+    height: 190,
+    width: 150,
+    borderTopStartRadius: 10,
+    borderBottomStartRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    marginLeft: 20,
+  },
+  movieTextView:{
+    marginTop: 30,
+  },
+  movieInnerView:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  showall:{
+    color: '#e4264e',
+    marginRight: 20,
+  },
+  reviewView:{
+    backgroundColor: '#181f29',
+    marginLeft: 20,
+    padding: 10,
+  },
+  titleText:{
+    color: 'white',
+    textTransform: 'uppercase',
+  },
+  titletextView:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  mediaType:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  ratingImg:{
+    marginRight: 10,
+  },
+  mediatext:{
+    color: 'white',
+    textTransform: 'uppercase',
+  },
+  voteText:{
+    color: 'white',
+    marginRight: 10,
+  }
 });
 
 const mapStateToProps = state => ({

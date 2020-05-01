@@ -10,7 +10,7 @@ import {
   Alert
 } from 'react-native';
 import {connect} from 'react-redux';
-import {toggleLogin,toggleSuccess} from '../Services/Login/action'
+import {loginCheck, loginSuccess} from '../Services/Login/action'
 const Realm = require('realm');
 class Login extends React.Component {
   constructor(props) {
@@ -262,8 +262,8 @@ const mapStateToProps = state => ({
   });
 
   const mapDispatchToProps = {
-    toggleLogin: toggleLogin,
-    toggleSuccess: toggleSuccess,
+    toggleLogin: loginCheck,
+    toggleSuccess: loginSuccess,
   };
   export default connect(
     mapStateToProps,

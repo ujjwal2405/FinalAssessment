@@ -11,6 +11,7 @@ import {
   FlatList,
 } from 'react-native';
 import {getdata} from '../Services/Home/action';
+import {getlivedata} from '../Services/Live/action'
 import {connect} from 'react-redux';
 class Home extends React.Component {
   constructor(props) {
@@ -263,10 +264,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   datas: state.homedisplayReducer.datastore,
+  liveImages:state.livedisplayReducer.livestore
 });
 
 const mapDispatchToProps = {
   datalist: getdata,
+  livedatalist:getlivedata
 };
 
 export default connect(

@@ -1,6 +1,6 @@
 import {DISPLAY_DATA} from './constant';
 
-export const getdata = () => dispatch => {
+export const getlivedata = () => dispatch => {
   fetch(
     'https://api.jsonbin.io/b/5eac0b7b07d49135ba48c062',
     {

@@ -1,6 +1,6 @@
 import {TOGGLE_LOGIN, TOGGLE_FAILED, TOGGLE_SUCCESS} from './constant';
 
-export const toggleLogin = (realm, username, password) => dispatch => {
+export const loginCheck = (realm, username, password) => dispatch => {
   if (realm[0].username === username && realm[0].password === password) {
     dispatch({
       type: TOGGLE_LOGIN,
@@ -11,7 +11,7 @@ export const toggleLogin = (realm, username, password) => dispatch => {
     });
   }
 };
-export const toggleSuccess = () => dispatch => {
+export const loginSuccess = () => dispatch => {
   dispatch({
     type: TOGGLE_SUCCESS,
   });

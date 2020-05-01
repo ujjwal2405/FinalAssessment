@@ -33,13 +33,38 @@ class Home extends React.Component {
         <View
           style={{
             flexDirection: 'row',
+            marginTop: 20,
+            marginLeft: 10,
+            justifyContent: 'space-between',
           }}>
-          <View>
+          <View
+            style={{
+              marginTop: 5,
+            }}>
             <Image source={require('../Assets/Hamburger_1.png')} />
           </View>
 
-          <View>
+          <View
+            style={{
+              marginLeft: 7,
+            }}>
             <Text style={styles.appName}>APP LOGO</Text>
+          </View>
+
+          <View
+            style={{
+              marginLeft: 80,
+              marginTop: 5,
+            }}>
+            <Image source={require('../Assets/notification.png')} />
+          </View>
+
+          <View
+            style={{
+              marginRight: 20,
+              marginTop: 5,
+            }}>
+            <Image source={require('../Assets/search.png')} />
           </View>
         </View>
 
@@ -92,7 +117,7 @@ class Home extends React.Component {
                 marginLeft: 20,
                 marginBottom: 10,
               }}>
-              Movies
+              MOVIES
             </Text>
 
             <Text
@@ -108,12 +133,7 @@ class Home extends React.Component {
             horizontal
             renderItem={({item}) => {
               return (
-                
-                
-                <View
-                  style={{
-                    
-                  }}>
+                <View style={{}}>
                   <Image
                     style={{
                       height: 190,
@@ -129,66 +149,93 @@ class Home extends React.Component {
                     }}
                   />
 
-                <View style={{
-                    backgroundColor:'#181f29',
-                    marginLeft:20,
-                    padding:10
-                }}>
-                
-                <View style={{
-                    flexDirection:"row",
-                    justifyContent:"space-between"
-                }}>
-                  
-                    <Text style={{
-                    color:"white",
-                    textTransform:"uppercase",
-                    
-                }}>
-                    {item.title}
-                </Text>
-                
+                  <View
+                    style={{
+                      backgroundColor: '#181f29',
+                      marginLeft: 20,
+                      padding: 10,
+                    }}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                      }}>
+                      <Text
+                        style={{
+                          color: 'white',
+                          textTransform: 'uppercase',
+                        }}>
+                        {item.title}
+                      </Text>
 
-                <Image source={require('../Assets/rating.png')}
-                style={{
-                    marginRight:10
-                }}
-                />
-                
+                      <Image
+                        source={require('../Assets/rating.png')}
+                        style={{
+                          marginRight: 10,
+                        }}
+                      />
+                    </View>
+
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginTop: 10,
+                      }}>
+                      <Text
+                        style={{
+                          color: 'white',
+                          textTransform: 'uppercase',
+                        }}>
+                        {item.media_type}
+                      </Text>
+
+                      <Text
+                        style={{
+                          color: 'white',
+                          marginRight: 10,
+                        }}>
+                        {item.vote_average}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-
-                
-                <View style={{
-                    flexDirection:"row",
-                    justifyContent:"space-between",
-                    marginTop:10
-                }}>
-                    <Text style={{
-                    color:"white",
-                    textTransform:"uppercase"
-                }}>
-                    {item.media_type}
-                </Text>
-
-               <Text
-               style={{
-                   color:"white",
-                   marginRight:10
-               }}
-               >
-                   {item.vote_average}
-               </Text>
-                
-                
-                </View>
-                </View>
-
-                </View>
-
               );
             }}
             keyExtractor={item => item.id}
           />
+
+        
+
+        </View>
+
+        <View style={{
+            marginTop: 30,
+          }}>
+
+<View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                marginLeft: 20,
+                marginBottom: 10,
+              }}>
+              LIVE CHANNELS
+            </Text>
+
+            <Text
+              style={{
+                color: '#e4264e',
+                marginRight: 20,
+              }}>
+              Show All
+            </Text>
+          </View>
+
         </View>
       </ImageBackground>
     );

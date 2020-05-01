@@ -6,15 +6,86 @@ import {
   ImageBackground,
   Image,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
-
+import {connect} from 'react-redux';
+import {toggleLogin,toggleSuccess} from '../Services/Login/action'
+const Realm = require('realm');
 class Login extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+        username:'',
+        password:'',
+        realm:null,
+
+    };
   }
 
+
+  dataSave() {
+    const {realm} = this.state;
+    realm.write(() => {
+      realm.create('UserCreds', {username: 'Admin', password: 'Admin'});
+    });
+  }
+
+  dataDelete() {
+    const {realm} = this.state;
+    realm.write(() => {
+      let user = realm.objects('UserCreds');
+      realm.delete(user);
+    });
+  }
+
+  componentDidMount() {
+    Realm.open({
+      schema: [
+        {
+          name: 'UserCreds',
+          properties: {username: 'string', password: 'string'},
+        },
+      ],
+    }).then(realm => {
+      this.setState({realm});
+      this.dataDelete();
+      this.dataSave();
+    });
+  }
+
+  componentWillUnmount() {
+    const {realm} = this.state;
+    if (realm !== null && !realm.isClosed) {
+      realm.close();
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const {navigation} = props;
+    if (props.logIn) {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Home'}],
+      });
+    }
+
+    if (props.flag) {
+      Alert.alert('Error', 'Wrong Login Credentials', [
+        {
+          text: 'Try Again',
+          onPress: () => props.toggleSuccess(),
+        },
+      ]);
+    }
+    return null;
+  }
+
+
+
+
   render() {
+    const {username, password, realm} = this.state;
     return (
       <ImageBackground
         source={require('../Assets/layer_1.png')}
@@ -49,23 +120,38 @@ class Login extends React.Component {
             style={styles.textinput}
             placeholder="User Name"
             placeholderTextColor="white"
+            onChangeText={text => {
+                this.setState({username: text});
+              }}
           />
         </View>
         <View style={styles.textInput}>
           <Image source={require('../Assets/password_2.png')}
            style={styles.iconImage}
+           onChangeText={text => {
+            this.setState({username: text});
+          }}
           />
 
           <TextInput
             style={styles.textinput}
             placeholder="Password"
             placeholderTextColor="white"
-            secureTextEntry={true}
+           
+            onChangeText={text => {
+                this.setState({username: text});
+              }}
           />
         </View>
         <TouchableOpacity
         onPress={()=>{
-            this.props.navigation.navigate('Home')
+
+            // this.props.toggleLogin(
+            //     realm.objects('UserCreds'),
+            //     username,
+            //     password,
+            //   );
+             this.props.navigation.navigate('Home')
         }}
         >
         <View style={styles.logInButton}>
@@ -169,4 +255,17 @@ const styles = StyleSheet.create({
       marginLeft:10
   }
 });
-export default Login;
+
+const mapStateToProps = state => ({
+    logIn: state.loginReducer.login,
+    flag: state.loginReducer.flag,
+  });
+
+  const mapDispatchToProps = {
+    toggleLogin: toggleLogin,
+    toggleSuccess: toggleSuccess,
+  };
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Login);

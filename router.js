@@ -1,5 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack'
 
 import Login from './src/Components/Login'
 import Home from './src/Components/Home'
@@ -8,7 +9,7 @@ import {Provider} from 'react-redux';
 import store from './src/Services/rootreducer';
 
 const Drawer = createDrawerNavigator();
-
+const Stack=createStackNavigator();
 const MyStack = () => {
   return (
     <Drawer.Navigator initialRouteName="Home">
@@ -17,6 +18,7 @@ const MyStack = () => {
   </Drawer.Navigator>
   );
 };
+
 
 const App = () => {
   return (

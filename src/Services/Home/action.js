@@ -12,9 +12,11 @@ export const getdata = () => dispatch => {
       return response.json();
     })
     .then(responseJson => {
+       
       dispatch({
         type: DISPLAY_DATA,
         data: responseJson,
+        
       });
     });
 };
